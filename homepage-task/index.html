@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precision Metals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scroll Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Scroll Animation Classes */
+    .scroll-animate {
+      opacity: 0;
+      view-timeline-name: --reveal;
+      view-timeline-axis: block;
+      animation: fadeInUp 1s ease forwards;
+      animation-timeline: --reveal;
+      animation-range: entry 20% cover 50%;
+    }
+
+    .scroll-animate-left {
+      opacity: 0;
+      view-timeline-name: --reveal;
+      view-timeline-axis: block;
+      animation: fadeInLeft 1s ease forwards;
+      animation-timeline: --reveal;
+      animation-range: entry 20% cover 50%;
+    }
+
+    .scroll-animate-right {
+      opacity: 0;
+      view-timeline-name: --reveal;
+      view-timeline-axis: block;
+      animation: fadeInRight 1s ease forwards;
+      animation-timeline: --reveal;
+      animation-range: entry 20% cover 50%;
+    }
+
+    /* Staggered animations for grid items */
+    .grid>div:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .grid>div:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .grid>div:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    nav a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #f8f9fa;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Navbar links hover effect */
+    nav a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #109DD8;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Product cards hover effect */
+    .grid>div {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grid>div:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Certification logos hover effect */
+    .grid-cols-5 img {
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .grid-cols-5 img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+
+    /* Social media icons hover effect */
+    .footer-right a {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-right a:hover {
+      transform: translateY(-3px);
+      color: #109DD8;
+    }
+
+    /* Down arrow button hover animation */
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .fa-arrow-down {
+      transition: transform 0.3s ease;
+    }
+
+    .rounded-full:hover .fa-arrow-down {
+      animation: bounce 1s infinite;
+    }
+
+    /* Vision and Mission cards hover effect */
+    .bg-dark {
+      background-color: #292929;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .bg-dark:hover {
+      transform: translateX(10px);
+      box-shadow: -5px 5px 15px rgba(42, 155, 214, 0.3);
+    }
+
+    /* Products section arrow button hover */
+    .btn-arrow {
+      background-color: #109DD8;
+      border-radius: 9999px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .btn-arrow:hover {
+      transform: translateX(5px);
+      background-color: #0b7aa9;
+    }
+
+    /* Venus Group link hover effect */
+    .text-link {
+      color: #0a8dbd;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .text-link:hover {
+      color: #085d7a;
+      text-decoration: underline;
+    }
+
+    /* Footer links hover effect */
+    /* Footer layout & styling */
+    footer {
+      background-color: white;
+      padding: 2rem;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Links container */
+    .footer-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-left a {
+      color: black;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.3s;
+    }
+
+    .footer-left a:hover {
+      color: #109DD8;
+    }
+
+    /* Copyright text */
+    .footer-left p {
+      font-size: 0.75rem;
+      color: #888;
+      margin: 0.5rem 0 0;
+      flex-basis: 100%;
+      text-align: center;
+    }
+
+    /* Social icons container */
+    .footer-right {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Icons styling */
+    .footer-right a {
+      color: #888;
+      font-size: 1.25rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .footer-right a:hover {
+      color: #109DD8;
+      transform: translateY(-3px);
+    }
+
+    /* Base icon style */
+    .footer-right a {
+      font-size: 1.25rem;
+      transition: transform 0.3s;
+    }
+
+    /* Brand colors (default) */
+    .footer-right a.twitter {
+      color: #1DA1F2;
+    }
+
+    .footer-right a.youtube {
+      color: #FF0000;
+    }
+
+    .footer-right a.linkedin {
+      color: #0077B5;
+    }
+
+    .footer-right a.facebook {
+      color: #1877F2;
+    }
+
+    .footer-right a.instagram {
+      color: #E1306C;
+    }
+
+    .footer-right a:hover {
+      transform: translateY(-3px);
+    }
+
+    .footer-links a {
+      position: relative;
+      padding: 0 1rem;
+      font-size: 0.875rem;
+      text-decoration: none;
+      color: black;
+      font-weight: bolder;
+    }
+
+    .footer-links a:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 1rem;
+      border-right: 3px solid #000;
+    }
+
+    /* Responsive: horizontal layout on wider screens */
+    @media (min-width: 768px) {
+      footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-left {
+        margin-bottom: 0;
+      }
+
+      .footer-left p {
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      .footer-right {
+        margin-top: 0;
+      }
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-left p {
+      font-size: 0.75rem;
+      color: black;
+      margin: 0;
+      padding-right: 130px;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .strong-outline {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      color: white;
+      -webkit-text-stroke: 1px #2a9bd6;
+      opacity: 0.3;
+      background-color: #1DA1F2;
+      border: white;
+
+    }
+
+    /*product section*/
+    .scroll-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding: 2rem 0;
+      background-color: #f9f9f9;
+    }
+
+    .scroll-container {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .card {
+      flex: 0 0 300px;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .text-content {
+      padding: 1rem;
+      color: #000;
+      background-color: #fff;
+      z-index: 1;
+    }
+
+    .text-content h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .text-content p {
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .scroll-animate-right {
+      opacity: 0;
+      animation: fadeInLeft 1s ease forwards;
+      animation-timeline: view();
+      animation-range: entry 20% cover 50%;
+    }
+
+    .scroll-animate-left {
+      opacity: 0;
+      animation: fadeInRight 1s ease forwards;
+      animation-timeline: view();
+      animation-range: entry 20% cover 50%;
+    }
+
+    /*product section end*/
+
+    /*navbar menu*/
+    #menu-toggle:checked~#menu-items {
+      display: block;
+    }
+
+    @media (max-width: 767px) {
+      #mobile-menu.show {
+        display: flex;
+      }
+    }
+
+    #menu-toggle:checked~#menu-items {
+      display: flex;
+    }
+    /*navbar menu*/
+
+    /* Responsive footer */
+    @media (min-width: 768px) {
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-right {
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white font-sans flex flex-col min-h-screen">
+  <main class="flex-grow">
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen overflow-hidden scroll-animate">
+      <img src="ss/workerr.jpeg" alt="Background"
+        class="absolute inset-0 w-full h-full object-cover brightness-50 z-0" />
+      <div class="relative z-10 h-full flex flex-col">
+        <div class="flex justify-between items-center px-6 md:px-12 py-4">
+          <header class=" text-white w-full z-50">
+            <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+              <div class="flex items-center space-x-2">
+                <div class="bg-white text-black text-xs font-bold px-1">PRECISION</div>
+                <div class="text-xl font-bold">METALS</div>
+              </div>
+
+              <!-- Desktop Menu -->
+              <nav class="hidden md:flex space-x-6 text-sm font-semibold uppercase tracking-widest">
+                <a href="#overview" class="hover:text-cyan-400">An Overview</a>
+                <a href="#whyus" class="hover:text-cyan-400">Why Us</a>
+                <a href="#certifications" class="hover:text-cyan-400">System Certifications</a>
+                <a href="#products" class="hover:text-cyan-400">Product</a>
+                <a href="#contact" class="hover:text-cyan-400">Contact Us</a>
+              </nav>
+
+              <!-- Mobile Menu Toggle -->
+              <div class="md:hidden">
+                <details class="relative">
+                  <summary class="cursor-pointer text-sm uppercase font-semibold">☰</summary>
+                  <div class="absolute right-0 mt-2 w-48 bg-black text-white rounded shadow-lg z-50">
+                    <a href="#overview" class="block px-4 py-2 hover:text-cyan-400">An Overview</a>
+                    <a href="#whyus" class="block px-4 py-2 hover:text-cyan-400">Why Us</a>
+                    <a href="#certifications" class="block px-4 py-2 hover:text-cyan-400">System Certifications</a>
+                    <a href="#products" class="block px-4 py-2 hover:text-cyan-400">Product</a>
+                    <a href="#contact" class="block px-4 py-2 hover:text-cyan-400">Contact Us</a>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </header>
+        </div>
+
+
+
+        <div class="flex-1 flex flex-col md:flex-row items-center justify-between px-6 md:px-12">
+          <div class="max-w-xl mt-8 md:mt-0 z-10">
+            <h1 class="text-xs md:text-4xl font-bold leading-tight font-orbitron"
+              style="font-size: 40px; color: #0a8dbd;">PRECISION METALS</h1>
+            <br>
+            <h1 class="text-xs md:text-4xl font-bold leading-tight font-orbitron">
+              SETTING THE <br /> BENCHMARK IN <br /> STAINLESS <br /> STEEL SOLUTIONS.
+            </h1>
+            <br>
+            <p class="text-[14px] md:text-[16px] font-normal tracking-wide">
+              Your partner in precision and strength.</p>
+            <a href="#overview">
+              <div
+                class="mt-8 w-10 h-10 rounded-full border border-cyan-500 flex items-center justify-center hover:bg-cyan-500 hover:text-black transition">
+                <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              </div>
+            </a>
+          </div>
+          <div class="relative w-full md:w-auto mt-12 md:mt-0">
+            <img src="ss/pipe.png" alt="Steel Pipes" style="margin-top: 210px;">
+            <div class="hidden md:flex absolute right-0 top-0 h-full items-center justify-center pr-8 z-20">
+              <div class="absolute right-0 top-0 bottom-0 flex items-center pr-6 z-10">
+                <span class="strong-outline font-orbitron text-[105px] tracking-[0.3em] leading-none">
+                  STRONG
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW SECTION -->
+    <section class="bg-[#109DD8] text-white py-20 px-6 md:px-20 relative z-10 scroll-animate-left" id="overview">
+      <div class="text-sm uppercase tracking-widest font-bold  mb-6">An Overview</div>
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold font-sans leading-snug mb-6">
+          A PROUD VENUS WIRES SUBSIDIARY,<br />
+          PRECISION METAL BRINGS OVER<br />
+          50 YEARS OF STAINLESS STEEL EXCELLENCE.
+        </h2>
+        <div class="mx-auto w-12 h-1 bg-white mb-6"></div>
+        <p class="text-base leading-relaxed text-white/90">
+          Building upon Venus Wires legacy of 50+ years, Precision Metal specializes in
+          manufacturing stainless steel bars that meet the highest global standards.
+          With a reputation for innovation and precision, we cater to industries
+          demanding exceptional quality, reliability, and sustainability.
+        </p>
+        <a href="read-more.html"
+          class="mt-6 inline-block font-semibold text-white hover:underline transition duration-500 relative z-30">READ
+          MORE</a>
+      </div>
+    </section>
+
+    <!-- VISION & MISSION SECTION -->
+    <section id="whyus" class="bg-[#1f1f1f] font-sans text-white scroll-animate-right relative z-10">
+      <div class="w-full py-10 relative ">
+        <img alt="Worker using grinder" class="absolute inset-0 w-full h-full object-cover -z-10" src="ss/worker.jpg" />
+        
+        <!-- Vision Box - Overlapping Half on Overview -->
+        <div class="absolute top-[-100px] left-0 z-20 max-w-[420px] pointer-events-none">
+          <div class="bg-[#292929] border-b-4 border-[#2a9bd6] border-l-8 border-l-[#2a9bd6] p-8">
+            <div class="flex justify-end mb-4">
+              <img src="ss/bulb.png" alt="Vision Icon" class="object-contain w-20 h-20" />
+            </div>
+            <div>
+              <h2 class="font-montserrat font-bold text-xl mb-2">Vision</h2>
+              <p class="font-opensans text-sm leading-relaxed">
+                To be a globally recognized brand in stainless steel and specialty
+                products, renowned for innovation, quality, and superior service.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Mission Box -->
+        <div class="relative z-10 mt-44 max-w-[420px]">
+          <div class="bg-[#292929] border-b-4 border-[#2a9bd6] border-l-8 border-l-[#2a9bd6] p-8">
+            <div class="flex justify-end mb-4">
+              <img src="ss/target.png" alt="Mission Icon" class="object-contain w-20 h-20" />
+            </div>
+            <div>
+              <h2 class="font-montserrat font-bold text-xl mb-2">Mission</h2>
+              <p class="font-opensans text-sm leading-relaxed">
+                To empower industries with cutting-edge stainless steel solutions,
+                enabling our customers to enhance their productivity and create
+                innovative products that shape the future.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="scroll-animate-left bg-white py-16 text-black font-sans">
+      <div class="max-w-[1200px] mx-auto px-4 mb-10 text-center">
+        <p class="font-bold uppercase text-[#2a9bd6] tracking-wide mb-2">Products</p>
+
+        <h2 class="scroll-animate text-3xl md:text-4xl font-extrabold leading-tight mb-4">
+          CRAFTING STAINLESS STEEL SOLUTIONS THAT COMBINE STRENGTH, SUSTAINABILITY, AND SUPERIOR CRAFTSMANSHIP FOR
+          INDUSTRIES WORLDWIDE.
+        </h2>
+
+        <div class="w-16 h-1 bg-[#2a9bd6] mx-auto mb-6"></div>
+      </div>
+    </section>
+
+    <!-- Product Cards Scroll Container -->
+    <div class="scroll-container flex gap-6 overflow-x-auto px-4">
+      <div class="card min-w-[300px] bg-white shadow-lg">
+        <img src="ss/round-pipe.png" alt="Round Bars" class="w-full h-48 object-cover">
+        <div class="text-content p-4">
+          <h3 class="font-bold text-lg mb-2">Round Bars</h3>
+          <p class="text-sm">We are the leading Stainless Steel Round Bars manufacturers in India, catering invariably
+            to all industrial applications.</p>
+        </div>
+      </div>
+
+      <div class="card min-w-[300px] bg-white shadow-lg">
+        <img src="ss/hexa.JPG" alt="Hex & Square Bar" class="w-full h-48 object-cover">
+        <div class="text-content p-4">
+          <h3 class="font-bold text-lg mb-2">Hex & Square Bar</h3>
+          <p class="text-sm">Our high quality stainless steel hexagon bars and square bars products range from 5 mm to
+            50 mm.</p>
+        </div>
+      </div>
+
+      <div class="card min-w-[300px] bg-white shadow-lg">
+        <img src="ss/vsq.jpg" alt="VSQ Bars" class="w-full h-48 object-cover">
+        <div class="text-content p-4">
+          <h3 class="font-bold text-lg mb-2">VSQ Bars</h3>
+          <p class="text-sm">Venus Wires Square (VSQ) Bars are crafted for pump manufacturing, food industries and other
+            precision applications.</p>
+        </div>
+      </div>
+
+      <div class="card min-w-[300px] bg-white shadow-lg">
+        <img src="ss/steelbar.png" alt="Steel Bars" class="w-full h-48 object-cover">
+        <div class="text-content p-4">
+          <h3 class="font-bold text-lg mb-2">Steel Bars</h3>
+          <p class="text-sm">We supply steel bars suitable for engineering, structural, and industrial use with
+            precision finishes and top-grade quality.</p>
+        </div>
+      </div>
+
+      <div class="card min-w-[300px] bg-white shadow-lg">
+        <img src="ss/sten.jpg" alt="Bright Bars" class="w-full h-48 object-cover">
+        <div class="text-content p-4">
+          <h3 class="font-bold text-lg mb-2">Bright Bars</h3>
+          <p class="text-sm">Precision-engineered bars with a bright, smooth surface for decorative and engineering use.
+          </p>
+        </div>
+      </div>
+
+      <div class="card min-w-[300px] bg-white shadow-lg">
+        <img src="ss/flatbar.jpg" alt="Flat Bars" class="w-full h-48 object-cover">
+        <div class="text-content p-4">
+          <h3 class="font-bold text-lg mb-2">Flat Bars</h3>
+          <p class="text-sm">Used in construction, fabrication, and frames due to their strength and flat surface.</p>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <section id="certifications" class="relative bg-[#E1EBF2] text-black py-12 px-6 md:px-20 scroll-animate-left">
+      <div class="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-black/20 to-transparent z-0"></div>
+
+      <!-- SYSTEM CERTIFICATIONS SECTION -->
+      <section class="relative bg-[#E1EBF2] text-black py-16 px-6 md:px-20 scroll-animate-left">
+        <div class="relative z-10 max-w-7xl mx-auto text-center">
+          <p class="text-sm font-bold uppercase text-gray-700 mb-4 tracking-wide">System Certifications</p>
+          <h2 class="text-3xl md:text-4xl font-bold font-orbitron leading-tight mb-12">
+            CERTIFIED FOR EXCELLENCE, TRUSTED FOR <br class="hidden md:inline" /> QUALITY.
+          </h2>
+
+          <!-- Certificates Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-center">
+            <div class="flex items-center justify-center h-36 bg-white shadow-md rounded-lg">
+              <img src="ss/iso9.png" alt="ISO 9001:2015" class="h-24 w-auto object-contain" />
+            </div>
+            <div class="flex items-center justify-center h-36 bg-white shadow-md rounded-lg">
+              <img src="ss/iso2.jpg" alt="ISO 14001:2015" class="h-24 w-auto object-contain" />
+            </div>
+            <div class="flex items-center justify-center h-36 bg-white shadow-md rounded-lg">
+              <img src="ss/iso8.png" alt="ISO 45001:2018" class="h-24 w-auto object-contain" />
+            </div>
+            <div class="flex items-center justify-center h-36 bg-white shadow-md rounded-lg">
+              <img src="ss/iso6.png" alt="TUV NORD" class="h-24 w-auto object-contain" />
+            </div>
+            <div class="flex items-center justify-center h-36 bg-white shadow-md rounded-lg">
+              <img src="ss/iso7.jpg" alt="ISO TS 16949" class="h-24 w-auto object-contain" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- VENUS GROUP SECTION -->
+    <section id="contact" class="bg-[#c3d3db] scroll-animate-right">
+      <div class="mx-auto">
+        <div class="relative">
+          <img alt="Steel factory" class="w-full object-cover h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px]"
+            src="ss/steel-factory-1.jpg" width="1200" />
+          <div
+            class="absolute bottom-6 left-4 sm:left-6 md:left-10 max-w-[90%] sm:max-w-[80%] md:max-w-[600px] text-white">
+            <h2 class="text-xl sm:text-2xl md:text-[28px] leading-snug font-bold uppercase font-sans tracking-wide">
+              PRECISION METALS IS A <br />
+              PART OF VENUS GROUP
+            </h2>
+            <p class="mt-4 text-lg sm:text-xl md:text-[20px] leading-relaxed font-semibold font-sans uppercase">
+              FOR MORE INFORMATION VISIT <br />
+              <a class="block mt-2 text-[#60b4e1] font-montserrat break-all" href="#">
+                WWW.VENUSWIRES.COM
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">
+        <div class="footer-links">
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policies</a>
+          <a href="#">Disclaimer</a>
+        </div>
+        <p>Copyright 2025 Precision Metal. All Rights Reserved.</p>
+      </div>
+
+      </div>
+
+      <div class="footer-right">
+        <a href="https://www.facebook.com/" class="facebook" aria-label="Facebook" target="_blank"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/" class="twitter" aria-label="Twitter" target="_blank"><i
+            class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/" class="linkedin" aria-label="LinkedIn" target="_blank"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/" class="youtube" aria-label="YouTube" target="_blank"><i
+            class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/" class="instagram" aria-label="Instagram" target="_blank"><i
+            class="fab fa-instagram"></i></a>
+      </div>
+    </footer>
+</body>
+
+</html>

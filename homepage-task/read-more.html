@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read More - Precision Metals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .img-hover-animate {
+      transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+      border-radius: 0.5rem;
+      filter: grayscale(0%) brightness(100%) contrast(100%);
+    }
+
+    .img-hover-animate:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+      filter: grayscale(0%) brightness(110%) contrast(120%) saturate(130%);
+    }
+
+    .hover-highlight p:hover {
+      color: #0a8dbd;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: #0a8dbd;
+    }
+    
+  </style>
+</head>
+<body class="bg-white text-black font-sans px-6 py-12 bg-fixed bg-cover bg-center" style="background-image: url('ss/read-bg.jpg');">
+  <div class="max-w-4xl mx-auto bg-white/80 backdrop-blur-md p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6 text-[#0a8dbd]">About Precision Metals</h1>
+
+    <div class="mb-8">
+      <img src="ss/read-bg.jpg" alt="Precision Metals" class="img-hover-animate w-full h-auto object-cover max-h-[400px]">
+    </div>
+
+    <div class="hover-highlight">
+      <p class="text-lg leading-relaxed mb-4">
+        Precision Metals, a proud subsidiary of Venus Wires, brings over 50 years of legacy and expertise in stainless steel solutions.
+        We specialize in manufacturing high-quality stainless steel bars for industries across the globe.
+      </p>
+      <p class="text-lg leading-relaxed mb-4">
+        Our commitment to innovation, precision, and sustainability ensures that we meet and exceed international standards,
+        offering products that stand the test of time and demanding applications.
+      </p>
+      <p class="text-lg leading-relaxed">
+        Whether it's construction, automotive, food processing, or industrial applications, Precision Metals delivers excellence
+        with every bar. Explore our products, certifications, and values that shape our leadership in the stainless steel sector.
+      </p>
+    </div>
+
+    <a href="index.html#next-section" class="inline-block mt-8 text-blue-600 font-medium hover:underline back-link">&larr; Back to Overview</a>
+  </div>
+</body>
+</html>
